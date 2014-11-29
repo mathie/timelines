@@ -1,4 +1,4 @@
-directories %(app lib config spec)
+directories %w(app lib config spec)
 
 guard :bundler do
   watch('Gemfile')
@@ -13,7 +13,7 @@ guard :rspec, cmd: 'bin/rspec' do
 
   watch(%r{^app/controllers/(.+)_controller\.rb$}) do |m|
     [
-      "spec/routing/#{m[1]}_routing_spec.rb",
+      "spec/routing/#{m[1]}_controller_routing_spec.rb",
       "spec/controllers/#{m[1]}_controller_spec.rb",
       "spec/features/#{m[1]}_spec.rb"
     ]
