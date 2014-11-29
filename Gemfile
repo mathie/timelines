@@ -15,5 +15,11 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0.0.beta4'
   gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'rspec-rails'
+
+  gem 'guard-bundler', require: false
+  gem 'guard-rspec', require: false
+  gem 'ruby_gntp'
 end
 
