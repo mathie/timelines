@@ -16,11 +16,12 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     RUBY
   end
 
-  def submit
+  def submit(options = {})
+    cancel_path = options.delete(:cancel) || @template.polymorphic_path(object)
     form_group do
       control_div(offset: true) do
         submit = super(class: 'btn btn-primary')
-        cancel = @template.link_to('Cancel', @template.polymorphic_path(object), class: 'btn btn-default')
+        cancel = @template.link_to('Cancel', cancel_path, class: 'btn btn-default')
 
         submit + ' ' + cancel
       end

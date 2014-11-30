@@ -1,0 +1,9 @@
+<% content_for :title, 'New Category' %>
+
+<%= render 'shared/errors', model: @category %>
+
+<%= bootstrap_form_for [@timeline, @category] do |f| %>
+  <%= f.text_field :title, autofocus: true %>
+
+  <%= f.submit cancel: @timeline %>
+<% end %>

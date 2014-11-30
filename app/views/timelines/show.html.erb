@@ -1,3 +1,12 @@
 <% content_for :title, @timeline.title %>
+<% content_for :toolbar do %>
+  <%= link_to 'New category', new_timeline_category_path(@timeline), class: 'btn btn-default' %>
+<% end %>
 
 <%= simple_format @timeline.body %>
+
+<h2>Categories</h2>
+
+<ul>
+  <%= render @timeline.categories %>
+</ul>
