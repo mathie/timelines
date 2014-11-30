@@ -1,0 +1,18 @@
+<% content_for :title, 'All timelines' %>
+<% content_for :toolbar do %>
+  <%= link_to 'New timeline', new_timeline_path, class: 'btn btn-default' %>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @timelines %>
+  </tbody>
+</table>
