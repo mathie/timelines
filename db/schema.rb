@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20141130144658) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "categories", force: true do |t|
+  create_table "categories", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "title",       null: false
     t.uuid     "timeline_id", null: false
     t.datetime "created_at",  null: false
