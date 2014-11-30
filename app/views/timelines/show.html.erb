@@ -1,6 +1,7 @@
 <% content_for :title, @timeline.title %>
 <% content_for :toolbar do %>
   <%= link_to 'New category', new_timeline_category_path(@timeline), class: 'btn btn-default' %>
+  <%= link_to 'New era', new_timeline_era_path(@timeline), class: 'btn btn-default' %>
 <% end %>
 
 <%= simple_format @timeline.body %>
@@ -10,3 +11,19 @@
 <ul>
   <%= render @timeline.categories %>
 </ul>
+
+<h2>Eras</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Details</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @timeline.eras %>
+  </tbody>
+</table>

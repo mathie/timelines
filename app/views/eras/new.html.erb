@@ -1,0 +1,13 @@
+<% content_for :title, 'New era' %>
+
+<%= render 'shared/errors', model: @era %>
+
+<%= bootstrap_form_for [@timeline, @era] do |f| %>
+  <%= f.text_field :title, autofocus: true %>
+  <%= f.text_area :body %>
+
+  <%= f.date_select :started_on %>
+  <%= f.date_select :ended_on %>
+
+  <%= f.submit cancel: @timeline %>
+<% end %>

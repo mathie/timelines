@@ -1,0 +1,17 @@
+<%= content_tag_for :tr, era do %>
+  <td>
+    <%= era.started_on.to_s(:long) %>
+    &mdash;
+    <%= era.ended_on.to_s(:long) %>
+  </td>
+
+  <td>
+    <h3><%= link_to era.title, era %></h3>
+    <%= simple_format era.body %>
+  </td>
+
+  <td>
+    <%= link_to 'Edit', edit_era_path(era), class: 'btn btn-default' %>
+    <%= link_to 'Delete', era, method: :delete, class: 'btn btn-danger' %>
+  </td>
+<% end %>
