@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20141130155928) do
 
   add_index "eras", ["timeline_id"], name: "index_eras_on_timeline_id", using: :btree
 
-  create_table "events", force: true do |t|
+  create_table "events", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "title",       null: false
     t.text     "body"
     t.date     "started_on",  null: false
