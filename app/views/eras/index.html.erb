@@ -1,0 +1,30 @@
+<%= content_for :title, "#{@timeline.title}: Eras"%>
+<%= content_for :toolbar do %>
+  <%= link_to 'New era', new_timeline_era_path(@timeline), class: 'btn btn-default' %>
+<% end %>
+
+<ul class="nav nav-tabs">
+  <li role="presentation">
+    <%= link_to 'Timeline', @timeline %>
+  </li>
+  <li role="presentation">
+    <%= link_to 'Events', timeline_categories_path(@timeline) %>
+  </li>
+  <li role="presentation" class="active">
+    <%= link_to 'Eras', timeline_eras_path(@timeline) %>
+  </li>
+</ul>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Details</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @timeline.eras %>
+  </tbody>
+</table>

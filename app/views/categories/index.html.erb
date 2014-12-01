@@ -1,0 +1,22 @@
+<% content_for :title, "#{@timeline.title}: Events" %>
+<% content_for :toolbar do %>
+  <%= link_to 'New category', new_timeline_category_path(@timeline), class: 'btn btn-default' %>
+  <%= link_to 'New event', new_timeline_event_path(@timeline), class: 'btn btn-default' %>
+<% end %>
+
+<ul class="nav nav-tabs">
+  <li role="presentation">
+    <%= link_to 'Timeline', @timeline %>
+  </li>
+  <li role="presentation" class="active">
+    <%= link_to 'Events', timeline_categories_path(@timeline) %>
+  </li>
+  <li role="presentation">
+    <%= link_to 'Eras', timeline_eras_path(@timeline) %>
+  </li>
+</ul>
+
+<div class="row">
+  <%= render 'categories/sidebar', timeline: @timeline %>
+  <%= render 'events/table', events: @timeline.events %>
+</div>

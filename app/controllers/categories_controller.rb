@@ -1,6 +1,11 @@
 class CategoriesController < ApplicationController
+  def index
+    @timeline = Timeline.find(params.require(:timeline_id))
+  end
+
   def show
     @category = Category.find(params.require(:id))
+    @timeline = @category.timeline
   end
 
   def new
@@ -34,7 +39,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params.require(:id))
     if @category.destroy
-      redirect_to @category.timeline, notice: 'Category deleted'
+      redirect_to timeline_categories_path(@category.timeline), notice: 'Category deleted'
     else
       redirect_to @category, alert: 'Category cannot be deleted'
     end

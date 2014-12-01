@@ -1,6 +1,6 @@
 class ErasController < ApplicationController
-  def show
-    @era = Era.find(params.require(:id))
+  def index
+    @timeline = Timeline.find(params.require(:timeline_id))
   end
 
   def new
@@ -12,7 +12,7 @@ class ErasController < ApplicationController
     @timeline = Timeline.find(params.require(:timeline_id))
     @era = @timeline.eras.build(era_params)
     if @era.save
-      redirect_to @era, notice: 'Era successfully created'
+      redirect_to timeline_eras_path(@timeline), notice: 'Era successfully created'
     else
       render 'new'
     end
@@ -25,7 +25,7 @@ class ErasController < ApplicationController
   def update
     @era = Era.find(params.require(:id))
     if @era.update_attributes(era_params)
-      redirect_to @era, notice: 'Era successfully updated'
+      redirect_to timeline_eras_path(@era.timeline), notice: 'Era successfully updated'
     else
       render 'edit'
     end
@@ -34,9 +34,9 @@ class ErasController < ApplicationController
   def destroy
     @era = Era.find(params.require(:id))
     if @era.destroy
-      redirect_to @era.timeline, notice: 'Era deleted'
+      redirect_to timeline_eras_path(@era.timeline), notice: 'Era deleted'
     else
-      redirect_to @era, alert: 'Era cannot be deleted'
+      redirect_to timeline_eras_path(@era.timeline), alert: 'Era cannot be deleted'
     end
   end
 

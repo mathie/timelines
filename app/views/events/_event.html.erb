@@ -1,0 +1,17 @@
+<%= content_tag_for :tr, event do %>
+  <td>
+    <%= event.started_on.to_s(:long) %> &mdash;
+    <%= event.ended_on.to_s(:long) %>
+  </td>
+  
+  <td>
+    <h3><%= event.title %></h3>
+    
+    <%= simple_format event.body %>
+  </td>
+  
+  <td>
+    <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-default' %>
+    <%= link_to 'Delete', event, method: :delete, class: 'btn btn-danger' %>
+  </td>
+<% end %>

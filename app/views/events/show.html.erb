@@ -1,0 +1,22 @@
+<% content_for :title, @event.title %>
+<% content_for :toolbar do %>
+  <%= link_to 'Edit', edit_event_path(@event), class: 'btn btn-default' %>
+  <%= link_to 'Delete', @event, method: :delete, class: 'btn btn-danger' %>
+<% end %>
+
+<dl class="dl-horizontal">
+  <dt>Title</dt>
+  <dd><%= @event.title %></dd>
+
+  <dt>Date</dt>
+  <dd>
+    <%= @event.started_on.to_s(:long) %> &mdash;
+    <%= @event.ended_on.to_s(:long) %>
+  </dd>
+
+  <dt>Description</dt>
+  <dd><%= simple_format @event.body %></dd>
+
+  <dt>Category</dt>
+  <dd><%= @event.category.title %></dd>
+</dl>
