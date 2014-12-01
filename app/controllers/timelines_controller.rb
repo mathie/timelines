@@ -1,10 +1,12 @@
 class TimelinesController < ApplicationController
+  before_filter :require_login
+
   def index
-    @timelines = Timeline.all
+    @timelines = current_user.timelines
   end
 
   def show
-    @timeline = Timeline.find(params.require(:id))
+    @timeline = current_user.timelines.find(params.require(:id))
     respond_to do |format|
       format.html {}
       format.json { render json: TimelineSerializer.new(@timeline) }
@@ -12,11 +14,11 @@ class TimelinesController < ApplicationController
   end
 
   def new
-    @timeline = Timeline.new
+    @timeline = current_user.timelines.new
   end
 
   def create
-    @timeline = Timeline.new(timeline_params)
+    @timeline = current_user.timelines.new(timeline_params)
     if @timeline.save
       redirect_to @timeline, notice: "Timeline successfully created."
     else
@@ -25,11 +27,11 @@ class TimelinesController < ApplicationController
   end
 
   def edit
-    @timeline = Timeline.find(params.require(:id))
+    @timeline = current_user.timelines.find(params.require(:id))
   end
 
   def update
-    @timeline = Timeline.find(params.require(:id))
+    @timeline = current_user.timelines.find(params.require(:id))
     if @timeline.update_attributes(timeline_params)
       redirect_to @timeline, notice: 'Timeline successfully updated.'
     else
@@ -38,7 +40,7 @@ class TimelinesController < ApplicationController
   end
 
   def destroy
-    @timeline = Timeline.find(params.require(:id))
+    @timeline = current_user.timelines.find(params.require(:id))
     if @timeline.destroy
       redirect_to timelines_path, notice: 'Timeline successfully deleted.'
     else

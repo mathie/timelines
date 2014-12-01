@@ -1,15 +1,17 @@
 class ErasController < ApplicationController
+  before_filter :require_login
+
   def index
-    @timeline = Timeline.find(params.require(:timeline_id))
+    @timeline = current_user.timelines.find(params.require(:timeline_id))
   end
 
   def new
-    @timeline = Timeline.find(params.require(:timeline_id))
+    @timeline = current_user.timelines.find(params.require(:timeline_id))
     @era = @timeline.eras.new
   end
 
   def create
-    @timeline = Timeline.find(params.require(:timeline_id))
+    @timeline = current_user.timelines.find(params.require(:timeline_id))
     @era = @timeline.eras.build(era_params)
     if @era.save
       redirect_to timeline_eras_path(@timeline), notice: 'Era successfully created'

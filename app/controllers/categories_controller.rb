@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
+  before_filter :require_login
+
   def index
-    @timeline = Timeline.find(params.require(:timeline_id))
+    @timeline = current_user.timelines.find(params.require(:timeline_id))
   end
 
   def show
@@ -9,12 +11,12 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @timeline = Timeline.find(params.require(:timeline_id))
+    @timeline = current_user.timelines.find(params.require(:timeline_id))
     @category = @timeline.categories.new
   end
 
   def create
-    @timeline = Timeline.find(params.require(:timeline_id))
+    @timeline = current_user.timelines.find(params.require(:timeline_id))
     @category = @timeline.categories.build(category_params)
     if @category.save
       redirect_to @category, notice: 'Category created'

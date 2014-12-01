@@ -1,16 +1,18 @@
 class EventsController < ApplicationController
+  before_filter :require_login
+
   def show
     @event = Event.find(params.require(:id))
   end
 
   def new
-    @timeline = Timeline.find(params.require(:timeline_id))
+    @timeline = current_user.timelines.find(params.require(:timeline_id))
     @event = @timeline.events.new
     @categories = @timeline.categories
   end
 
   def create
-    @timeline = Timeline.find(params.require(:timeline_id))
+    @timeline = current_user.timelines.find(params.require(:timeline_id))
     @event = @timeline.events.build(event_params)
     if @event.save
       redirect_to timeline_categories_path(@timeline), notice: 'Event successfully created.'

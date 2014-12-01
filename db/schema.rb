@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201105944) do
+ActiveRecord::Schema.define(version: 20141201112358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,10 @@ ActiveRecord::Schema.define(version: 20141201105944) do
     t.text     "body",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid     "user_id",    null: false
   end
+
+  add_index "timelines", ["user_id"], name: "index_timelines_on_user_id", using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name",          null: false
@@ -86,4 +89,5 @@ ActiveRecord::Schema.define(version: 20141201105944) do
   add_foreign_key "eras", "timelines", on_update: :restrict, on_delete: :restrict
   add_foreign_key "events", "categories", on_update: :restrict, on_delete: :restrict
   add_foreign_key "events", "timelines", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "timelines", "users", on_update: :restrict, on_delete: :restrict
 end

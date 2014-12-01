@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  protected
+
+  def require_login
+    unless signed_in?
+      redirect_to root_path, alert: 'You must be signed in to perform this task'
+    end
+  end
+
   def current_user=(user)
     user.tap { session[:user_id] = user.id }
   end
