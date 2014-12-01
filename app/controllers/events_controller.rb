@@ -13,7 +13,7 @@ class EventsController < ApplicationController
     @timeline = Timeline.find(params.require(:timeline_id))
     @event = @timeline.events.build(event_params)
     if @event.save
-      redirect_to @event, notice: 'Event successfully created.'
+      redirect_to timeline_categories_path(@timeline), notice: 'Event successfully created.'
     else
       render 'new'
     end
@@ -28,9 +28,18 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params.require(:id))
     if @event.update_attributes(event_params)
-      redirect_to @event, notice: 'Event successfully updated.'
+      redirect_to timeline_categories_path(@event.timeline), notice: 'Event successfully updated.'
     else
       render 'edit'
+    end
+  end
+
+  def destroy
+    @event = Event.find(params.require(:id))
+    if @event.destroy
+      redirect_to timeline_categories_path(@event.timeline), notice: 'Event successfully deleted.'
+    else
+      redirect_to timeline_categories_path(@event.timeline), alert: 'Event could not be deleted.'
     end
   end
 
