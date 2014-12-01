@@ -6,3 +6,8 @@ $ ->
       height: '550'
       embed_id: 'timeline'
       source: $('#timeline').data('src')
+
+  $('input[type=date]').datepicker
+    format: 'yyyy-mm-dd'
+    todayHighlight: true
+    autoclose: true

@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require timelineJS/storyjs-embed
 //= require timelineJS/timeline-min
+//= require bootstrap-datepicker
 //= require_tree .

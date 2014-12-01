@@ -1,19 +1,7 @@
 <% content_for :title, 'New event' %>
 
-<%= render 'shared/errors', model: @event %>
-
 <%= bootstrap_form_for [@timeline, @event] do |f| %>
-  <%= f.text_field :title, autofocus: true %>
-  <%= f.text_area :body %>
-
-  <%= f.date_select :started_on %>
-  <%= f.date_select :ended_on %>
-
-  <%= f.select :category_id, @categories.map { |category| [ category.title, category.id ] } %>
-
-  <%= f.file_field :image %>
-  <%= f.text_field :image_caption %>
-  <%= f.text_field :image_credit %>
+  <%= render 'fields', f: f, categories: @categories %>
 
   <%= f.submit cancel: @timeline %>
 <% end %>

@@ -1,0 +1,13 @@
+<%= render 'shared/errors', model: f.object %>
+
+<%= f.text_field :title, autofocus: true %>
+<%= f.text_area :body %>
+
+<%= f.text_field :started_on, type: 'date' %>
+<%= f.text_field :ended_on, type: 'date' %>
+
+<%= f.select :category_id, categories.map { |category| [ category.title, category.id ] } %>
+
+<%= f.file_field :image %>
+<%= f.text_field :image_caption %>
+<%= f.text_field :image_credit %>
