@@ -5,6 +5,10 @@ class TimelinesController < ApplicationController
 
   def show
     @timeline = Timeline.find(params.require(:id))
+    respond_to do |format|
+      format.html {}
+      format.json { render json: TimelineSerializer.new(@timeline) }
+    end
   end
 
   def new

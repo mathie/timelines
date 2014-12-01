@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require timelineJS/storyjs-embed
+//= require timelineJS/timeline-min
 //= require_tree .

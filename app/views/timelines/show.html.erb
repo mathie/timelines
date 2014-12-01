@@ -12,6 +12,4 @@
   </li>
 </ul>
 
-<%= simple_format @timeline.body %>
-
-
+<div id="timeline" data-src="<%= timeline_path(@timeline, format: :json) %>"></div>
