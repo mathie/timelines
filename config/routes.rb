@@ -5,5 +5,9 @@ Rails.application.routes.draw do
     resources :events, shallow: true
   end
 
+  resource :session, only: [ :new, :destroy ]
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/failure', to: 'sessions#failure'
+
   root to: 'pages#index'
 end
