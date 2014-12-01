@@ -3,11 +3,13 @@ class CategoriesController < ApplicationController
 
   def index
     @timeline = current_user.timelines.find(params.require(:timeline_id))
+    @events = @timeline.events.order(:started_on)
   end
 
   def show
     @category = Category.find(params.require(:id))
     @timeline = @category.timeline
+    @events = @category.events.order(:started_on)
   end
 
   def new

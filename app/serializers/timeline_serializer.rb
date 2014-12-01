@@ -28,7 +28,7 @@ class TimelineSerializer
   end
 
   def events
-    @timeline.events.map do |event|
+    @timeline.events.order(:started_on).map do |event|
       {
         startDate: event.started_on.strftime("%Y,%m,%d"),
         headline: event.title,
