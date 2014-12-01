@@ -10,3 +10,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Assets and uploads
+/public/assets
+/public/uploads

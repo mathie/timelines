@@ -5,4 +5,6 @@ class Timeline < ActiveRecord::Base
 
   validates :title, presence: true
   validates :body, presence: true
+
+  mount_uploader :cover_image, CoverImageUploader
 end

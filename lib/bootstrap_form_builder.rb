@@ -2,7 +2,9 @@
 class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   # Generate a text field for a form, with an associated label, contained in the
   # right markup to be styled with Twitter Bootstrap.
-  [:text_field, :text_area, :select, :date_select].each do |selector|
+  [
+    :text_field, :text_area, :select, :date_select, :file_field
+  ].each do |selector|
     class_eval <<-RUBY, __FILE__, __LINE__
       def #{selector}(method, *args)
         options = args.extract_options!

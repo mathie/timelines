@@ -16,7 +16,15 @@ class TimelineSerializer
       text: @timeline.body,
       date: events,
       era: eras
-    }
+    }.tap do |timeline|
+      if @timeline.cover_image.present?
+        timeline[:asset] = {
+          media: @timeline.cover_image.url,
+          caption: @timeline.cover_image_caption,
+          credit: @timeline.cover_image_credit
+        }
+      end
+    end
   end
 
   def events

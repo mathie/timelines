@@ -51,6 +51,9 @@ class TimelinesController < ApplicationController
   private
 
   def timeline_params
-    params.require(:timeline).permit(:title, :body)
+    params.require(:timeline).permit(
+      :title, :body,
+      :cover_image, :cover_image_credit, :cover_image_caption
+    )
   end
 end
