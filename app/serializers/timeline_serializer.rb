@@ -13,7 +13,7 @@ class TimelineSerializer
     {
       headline: @timeline.title,
       type: 'default',
-      text: @timeline.body,
+      text: markdown(@timeline.body),
       date: events,
       era: eras
     }.tap do |timeline|
@@ -32,7 +32,7 @@ class TimelineSerializer
       {
         startDate: event.started_on.strftime("%Y,%m,%d"),
         headline: event.title,
-        text: event.body,
+        text: markdown(event.body),
         tag: event.category.title
       }.tap do |event_json|
         if event.ended_on.present?
@@ -57,8 +57,18 @@ class TimelineSerializer
         startDate: era.started_on.strftime("%Y,%m,%d"),
         endDate: era.ended_on.strftime("%Y,%m,%d"),
         headline: era.title,
-        text: era.body
+        text: markdown(era.body)
       }
     end
+  end
+
+  def markdown(text)
+    @markdown ||= Redcarpet::Markdown.new(renderer, no_intra_emphasis: true, tables: true, autolink: true)
+
+    @markdown.render(text)
+  end
+
+  def renderer
+    @renderer ||= Redcarpet::Render::HTML.new(filter_html: true, no_styles: true, safe_links_only: true)
   end
 end

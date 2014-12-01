@@ -12,6 +12,7 @@ gem 'jquery-rails', '~> 4.0.0.beta2'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'autoprefixer-rails'
+gem 'redcarpet'
 
 gem 'omniauth-github'
 

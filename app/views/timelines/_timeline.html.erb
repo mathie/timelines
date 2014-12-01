@@ -1,6 +1,6 @@
 <%= content_tag_for :tr, timeline do %>
   <td><p><%= link_to timeline.title, timeline %></p></td>
-  <td><%= simple_format timeline.body %></td>
+  <td><%= markdown timeline.body %></td>
   <td>
     <%= link_to 'Edit', edit_timeline_path(timeline), class: 'btn btn-default' %>
     <%= link_to 'Delete', timeline, method: 'delete', class: 'btn btn-danger' %>

@@ -15,7 +15,7 @@
   </dd>
 
   <dt>Description</dt>
-  <dd><%= simple_format @event.body %></dd>
+  <dd><%= markdown @event.body %></dd>
 
   <dt>Category</dt>
   <dd><%= @event.category.title %></dd>
