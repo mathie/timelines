@@ -11,11 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141130155928) do
+ActiveRecord::Schema.define(version: 20141201105944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "authenticators", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
+    t.string   "token"
+    t.string   "secret"
+    t.uuid     "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "authenticators", ["provider", "uid"], name: "index_authenticators_on_provider_and_uid", unique: true, using: :btree
+  add_index "authenticators", ["user_id"], name: "index_authenticators_on_user_id", using: :btree
 
   create_table "categories", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "title",       null: false
@@ -59,6 +72,16 @@ ActiveRecord::Schema.define(version: 20141130155928) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.string   "name",          null: false
+    t.string   "email_address", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree
+
+  add_foreign_key "authenticators", "users", on_update: :restrict, on_delete: :restrict
   add_foreign_key "categories", "timelines", on_update: :restrict, on_delete: :restrict
   add_foreign_key "eras", "timelines", on_update: :restrict, on_delete: :restrict
   add_foreign_key "events", "categories", on_update: :restrict, on_delete: :restrict
