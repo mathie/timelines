@@ -12,8 +12,6 @@ gem 'jquery-rails', '~> 4.0.0.beta2'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
-gem 'jbuilder', '~> 2.0'
-
 gem 'omniauth-github'
 
 group :development, :test do
