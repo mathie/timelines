@@ -11,5 +11,9 @@
 
   <%= f.select :category_id, @categories.map { |category| [ category.title, category.id ] } %>
 
+  <%= f.file_field :image %>
+  <%= f.text_field :image_caption %>
+  <%= f.text_field :image_credit %>
+
   <%= f.submit cancel: @timeline %>
 <% end %>

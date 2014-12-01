@@ -15,6 +15,7 @@ gem 'autoprefixer-rails'
 gem 'omniauth-github'
 
 gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug'

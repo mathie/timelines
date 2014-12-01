@@ -35,7 +35,16 @@ class TimelineSerializer
         headline: event.title,
         text: event.body,
         tag: event.category.title
-      }
+      }.tap do |event_json|
+        if event.image.present?
+          event_json[:asset] = {
+            media: event.image.url,
+            caption: event.image_caption,
+            credit: event.image_credit,
+            thumbnail: event.image.thumb.url
+          }
+        end
+      end
     end
   end
 

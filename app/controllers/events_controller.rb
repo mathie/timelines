@@ -32,6 +32,8 @@ class EventsController < ApplicationController
     if @event.update_attributes(event_params)
       redirect_to timeline_categories_path(@event.timeline), notice: 'Event successfully updated.'
     else
+      @timeline = @event.timeline
+      @categories = @timeline.categories
       render 'edit'
     end
   end
@@ -48,6 +50,9 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:started_on, :ended_on, :title, :body, :category_id)
+    params.require(:event).permit(
+      :started_on, :ended_on, :title, :body, :category_id,
+      :image, :image_caption, :image_credit
+    )
   end
 end

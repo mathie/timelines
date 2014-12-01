@@ -1,6 +1,6 @@
 <%= render 'shared/errors', model: timeline %>
 
-<%= bootstrap_form_for timeline, html: { multipart: true } do |f| %>
+<%= bootstrap_form_for timeline do |f| %>
   <%= f.text_field :title, autofocus: true %>
   <%= f.text_area :body %>
 

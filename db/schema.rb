@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201115926) do
+ActiveRecord::Schema.define(version: 20141201121602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,14 +52,17 @@ ActiveRecord::Schema.define(version: 20141201115926) do
   add_index "eras", ["timeline_id"], name: "index_eras_on_timeline_id", using: :btree
 
   create_table "events", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
-    t.string   "title",       null: false
+    t.string   "title",         null: false
     t.text     "body"
-    t.date     "started_on",  null: false
+    t.date     "started_on",    null: false
     t.date     "ended_on"
-    t.uuid     "timeline_id", null: false
-    t.uuid     "category_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.uuid     "timeline_id",   null: false
+    t.uuid     "category_id",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "image"
+    t.string   "image_caption"
+    t.string   "image_credit"
   end
 
   add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree

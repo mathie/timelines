@@ -4,4 +4,6 @@ class Event < ActiveRecord::Base
 
   validates :started_on, presence: true
   validates :title, presence: true
+
+  mount_uploader :image, EventImageUploader
 end
