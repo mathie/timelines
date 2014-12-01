@@ -31,11 +31,14 @@ class TimelineSerializer
     @timeline.events.map do |event|
       {
         startDate: event.started_on.strftime("%Y,%m,%d"),
-        endDate: event.ended_on.strftime("%Y,%m,%d"),
         headline: event.title,
         text: event.body,
         tag: event.category.title
       }.tap do |event_json|
+        if event.ended_on.present?
+          event_json[:endDate] = event.ended_on.strftime("%Y,%m,%d")
+        end
+
         if event.image.present?
           event_json[:asset] = {
             media: event.image.url,

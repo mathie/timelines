@@ -3,7 +3,7 @@ class Era < ActiveRecord::Base
 
   validates :title, presence: true
   validates :started_on, presence: true
-  validates :ended_on, presence: true, after: true
+  validates :ended_on, presence: true
 
   validate :must_end_after_start
 

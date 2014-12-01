@@ -1,6 +1,7 @@
 <% content_for :title, 'All timelines' %>
 <% content_for :toolbar do %>
   <%= link_to 'New timeline', new_timeline_path, class: 'btn btn-default' %>
+  <%= link_to 'Import JSON', new_timeline_json_importer_path, class: 'btn btn-default' %>
 <% end %>
 
 <table class="table table-striped">

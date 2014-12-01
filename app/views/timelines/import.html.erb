@@ -1,0 +1,7 @@
+<% content_for :title, 'Import JSON' %>
+
+<%= bootstrap_form_for @timeline_json do |f| %>
+  <%= f.file_field :json %>
+
+  <%= f.submit %>
+<% end %>
