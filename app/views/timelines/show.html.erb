@@ -12,4 +12,13 @@
   </li>
 </ul>
 
-<div id="timeline" data-src="<%= timeline_path(@timeline, format: :json) %>"></div>
+<% if @timeline.events.present? %>
+  <div id="timeline" data-src="<%= timeline_path(@timeline, format: :json) %>">
+  </div>
+<% else %>
+  <div class="jumbotron">
+    <p>
+      No events, yet. In order to display a timeline, please add some events.
+    </p>
+  </div>
+<% end %>
