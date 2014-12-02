@@ -10,12 +10,23 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
         options = args.extract_options!
 
         form_group do
-          label(method) + control_div(method: method) do
+          bootstrap_label(method) + control_div(method: method) do
             super(method, *args, { class: 'form-control' }.merge(options))
           end
         end
       end
     RUBY
+  end
+
+  def check_box(method, options = {})
+    form_group do
+      control_div(method: method, offset: true) do
+        @template.content_tag(:div, class: 'checkbox') do
+          field = super method, options
+          label(method, field.html_safe + ' ' + method.to_s.humanize)
+        end
+      end
+    end
   end
 
   def submit(options = {})
@@ -30,8 +41,8 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def label(method, options = {})
-    super method, { class: 'col-sm-2 control-label' }.merge(options)
+  def bootstrap_label(method, options = {})
+    label method, { class: 'col-sm-2 control-label' }.merge(options)
   end
 
   private

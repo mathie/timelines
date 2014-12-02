@@ -24,4 +24,12 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
   helper_method :signed_in?
+
+  def timeline_scope
+    if signed_in?
+      current_user.timelines
+    else
+      Timeline.public
+    end
+  end
 end

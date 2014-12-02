@@ -1,7 +1,12 @@
-<%= content_tag_for :tr, timeline do %>
-  <td><p><%= link_to timeline.title, timeline %></p></td>
-  <td><%= markdown timeline.body %></td>
-  <td>
-    <%= link_to 'Edit', edit_timeline_path(timeline), class: 'btn btn-default' %>
-    <%= link_to 'Delete', timeline, method: 'delete', class: 'btn btn-danger' %>
+<%= content_tag_for :div, timeline, class: 'row' do %>
+  <figure class="col-sm-2 col-sm-offset-2 thumbnail">
+    <%= image_tag timeline.cover_image, alt: timeline.cover_image_caption, class: 'responsive-img' %>
+    <figcaption class="caption">
+      <%= simple_format timeline.cover_image_caption %>
+    </figcaption>
+  </figure>
+  <div class="col-sm-7">
+    <h2><%= link_to timeline.title, timeline %></h2>
+    <%= markdown timeline.body %>
+  </div>
 <% end %>

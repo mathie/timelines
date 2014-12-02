@@ -7,4 +7,8 @@ class Timeline < ActiveRecord::Base
   validates :body, presence: true
 
   mount_uploader :cover_image, CoverImageUploader
+
+  def self.public
+    where(public: true)
+  end
 end

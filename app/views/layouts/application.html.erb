@@ -27,8 +27,8 @@
 
         <div class="collapse navbar-collapse" id="primary-navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to 'Home', root_path %></li>
-            <li><%= link_to 'Timelines', timelines_path %></li>
+            <li><%= link_to 'Public Timelines', public_timelines_path %></li>
+            <li><%= link_to 'My Timelines', timelines_path %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if signed_in? %>

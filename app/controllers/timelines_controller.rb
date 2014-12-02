@@ -1,12 +1,16 @@
 class TimelinesController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login, except: [:public, :show]
 
   def index
     @timelines = current_user.timelines
   end
 
+  def public
+    @timelines = Timeline.public
+  end
+
   def show
-    @timeline = current_user.timelines.find(params.require(:id))
+    @timeline = timeline_scope.find(params.require(:id))
     respond_to do |format|
       format.html {}
       format.json { render json: TimelineSerializer.new(@timeline) }
@@ -52,7 +56,7 @@ class TimelinesController < ApplicationController
 
   def timeline_params
     params.require(:timeline).permit(
-      :title, :body,
+      :title, :body, :public,
       :cover_image, :cover_image_credit, :cover_image_caption
     )
   end

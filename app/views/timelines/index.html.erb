@@ -4,16 +4,4 @@
   <%= link_to 'Import JSON', new_timeline_json_importer_path, class: 'btn btn-default' %>
 <% end %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= render @timelines %>
-  </tbody>
-</table>
+<%= render @timelines %>
