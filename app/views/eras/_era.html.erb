@@ -10,8 +10,10 @@
     <%= markdown era.body %>
   </td>
 
-  <td>
-    <%= link_to 'Edit', edit_era_path(era), class: 'btn btn-default' %>
-    <%= link_to 'Delete', era, method: :delete, class: 'btn btn-danger' %>
-  </td>
+  <% if can? :manage, era.timeline %>
+    <td>
+      <%= link_to 'Edit', edit_era_path(era), class: 'btn btn-default' %>
+      <%= link_to 'Delete', era, method: :delete, class: 'btn btn-danger' %>
+    </td>
+  <% end %>
 <% end %>

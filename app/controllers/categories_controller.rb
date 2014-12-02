@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login, except: [:index, :show]
 
   def index
-    @timeline = current_user.timelines.find(params.require(:timeline_id))
+    @timeline = timeline_scope.find(params.require(:timeline_id))
     @events = @timeline.events.order(:started_on)
   end
 

@@ -14,8 +14,10 @@
     <%= markdown event.body %>
   </td>
 
-  <td>
-    <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-default' %>
-    <%= link_to 'Delete', event, method: :delete, class: 'btn btn-danger' %>
-  </td>
+  <% if can? :manage, event.timeline %>
+    <td>
+      <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-default' %>
+      <%= link_to 'Delete', event, method: :delete, class: 'btn btn-danger' %>
+    </td>
+  <% end %>
 <% end %>

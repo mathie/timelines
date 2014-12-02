@@ -6,7 +6,9 @@
       <tr>
         <th>Date</th>
         <th>Details</th>
-        <th>Actions</th>
+        <% if can? :manage, @timeline %>
+          <th>Actions</th>
+        <% end %>
       </tr>
     </thead>
 

@@ -50,6 +50,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    cancancan (1.9.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -242,6 +243,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-sass
   byebug
+  cancancan
   carrierwave
   coffee-rails (~> 4.1.0)
   guard-bundler

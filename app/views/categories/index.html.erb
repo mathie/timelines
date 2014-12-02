@@ -1,7 +1,9 @@
 <% content_for :title, "#{@timeline.title}: Events" %>
-<% content_for :toolbar do %>
-  <%= link_to 'New category', new_timeline_category_path(@timeline), class: 'btn btn-default' %>
-  <%= link_to 'New event', new_timeline_event_path(@timeline), class: 'btn btn-default' %>
+<% if can? :manage, @timeline %>
+  <% content_for :toolbar do %>
+    <%= link_to 'New category', new_timeline_category_path(@timeline), class: 'btn btn-default' %>
+    <%= link_to 'New event', new_timeline_event_path(@timeline), class: 'btn btn-default' %>
+  <% end %>
 <% end %>
 
 <ul class="nav nav-tabs">

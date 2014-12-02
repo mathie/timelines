@@ -1,6 +1,8 @@
 <% content_for :title, @timeline.title %>
-<% content_for :toolbar do %>
-  <%= link_to 'Edit', edit_timeline_path(@timeline), class: 'btn btn-default' %>
+<% if can? :manage, @timeline %>
+  <% content_for :toolbar do %>
+    <%= link_to 'Edit', edit_timeline_path(@timeline), class: 'btn btn-default' %>
+  <% end %>
 <% end %>
 
 <ul class="nav nav-tabs">

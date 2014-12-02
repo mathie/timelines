@@ -1,6 +1,8 @@
 <%= content_for :title, "#{@timeline.title}: Eras"%>
-<%= content_for :toolbar do %>
-  <%= link_to 'New era', new_timeline_era_path(@timeline), class: 'btn btn-default' %>
+<% if can? :manage, @timeline %>
+  <%= content_for :toolbar do %>
+    <%= link_to 'New era', new_timeline_era_path(@timeline), class: 'btn btn-default' %>
+  <% end %>
 <% end %>
 
 <ul class="nav nav-tabs">
@@ -20,7 +22,9 @@
     <tr>
       <th>Date</th>
       <th>Details</th>
-      <th>Actions</th>
+      <% if can? :manage, @timeline %>
+        <th>Actions</th>
+      <% end %>
     </tr>
   </thead>
 

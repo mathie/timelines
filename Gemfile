@@ -15,6 +15,7 @@ gem 'autoprefixer-rails'
 gem 'redcarpet'
 
 gem 'omniauth-github'
+gem 'cancancan'
 
 gem 'carrierwave'
 gem 'mini_magick'

@@ -1,7 +1,9 @@
 <% content_for :title, "#{@timeline.title}: #{@category.title}" %>
-<% content_for :toolbar do %>
-  <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-default' %>
-  <%= link_to 'Delete', @category, method: 'delete', class: 'btn btn-danger' %>
+<% if can? :manage, @timeline %>
+  <% content_for :toolbar do %>
+    <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-default' %>
+    <%= link_to 'Delete', @category, method: 'delete', class: 'btn btn-danger' %>
+  <% end %>
 <% end %>
 
 <div class="row">
