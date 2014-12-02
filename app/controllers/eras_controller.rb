@@ -3,6 +3,7 @@ class ErasController < ApplicationController
 
   def index
     @timeline = timeline_scope.find(params.require(:timeline_id))
+    @eras = @timeline.eras.order(:started_on).page(params[:page])
   end
 
   def new
