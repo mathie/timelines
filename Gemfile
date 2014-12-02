@@ -6,6 +6,10 @@ gem 'rails', '~> 4.2.0.beta4'
 gem 'pg'
 gem 'unicorn'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # Asset Pipeline
 gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'uglifier', '>= 1.3.0'
