@@ -1,5 +1,5 @@
 CarrierWave.configure do |config|
-  if ENV['AWS_ACCESS_KEY_ID'].present?
+  if ENV['AWS_ACCESS_KEY_ID'].present? && ENV['AWS_SECRET_ACCESS_KEY'].present?
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
