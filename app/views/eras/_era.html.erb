@@ -1,19 +1,21 @@
-<%= content_tag_for :tr, era do %>
-  <td>
-    <%= era.started_on.to_s(:long) %>
-    &mdash;
-    <%= era.ended_on.to_s(:long) %>
-  </td>
+<%= content_tag_for :div, era, class: 'row' do %>
+  <div class="col-sm-9 col-sm-offset-3">
+    <h3>
+      <%= era.title %><br>
+      <small>
+        <%= era.started_on.to_s(:long) %>
+        &mdash;
+        <%= era.ended_on.to_s(:long) %>
+      </small>
+    </h3>
 
-  <td>
-    <h3><%= era.title %></h3>
     <%= markdown era.body %>
-  </td>
 
-  <% if can? :manage, era.timeline %>
-    <td>
-      <%= link_to 'Edit', edit_era_path(era), class: 'btn btn-default' %>
-      <%= link_to 'Delete', era, method: :delete, class: 'btn btn-danger' %>
-    </td>
-  <% end %>
+    <% if can? :manage, era.timeline %>
+      <p class="text-right">
+        <%= link_to 'Edit', edit_era_path(era), class: 'btn btn-default' %>
+        <%= link_to 'Delete', era, method: :delete, class: 'btn btn-danger' %>
+      </p>
+    <% end %>
+  </div>
 <% end %>

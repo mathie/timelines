@@ -1,23 +1,31 @@
-<%= content_tag_for :tr, event do %>
-  <td>
-    <% if event.ended_on.present? %>
-      <%= event.started_on.to_s(:long) %> &mdash;
-      <%= event.ended_on.to_s(:long) %>
-    <% else %>
-      <%= event.started_on.to_s(:long) %>
-    <% end %>
-  </td>
+<%= content_tag_for :div, event, class: 'row' do %>
+  <figure class="col-sm-2 thumbnail">
+    <%= image_tag event.image, alt: event.image_caption, class: 'responsive-img' %>
+    <figcaption class="caption">
+      <%= simple_format event.image_caption %>
+    </figcaption>
+  </figure>
 
-  <td>
-    <h3><%= event.title %></h3>
+  <div class="col-sm-10">
+    <h3>
+      <%= event.title %><br>
+      <small>
+        <% if event.ended_on.present? %>
+          <%= event.started_on.to_s(:long) %> &mdash;
+          <%= event.ended_on.to_s(:long) %>
+        <% else %>
+          <%= event.started_on.to_s(:long) %>
+        <% end %>
+      </small>
+    </h3>
 
     <%= markdown event.body %>
-  </td>
 
-  <% if can? :manage, event.timeline %>
-    <td>
-      <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-default' %>
-      <%= link_to 'Delete', event, method: :delete, class: 'btn btn-danger' %>
-    </td>
-  <% end %>
+    <% if can? :manage, event.timeline %>
+      <p class="text-right">
+        <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-default' %>
+        <%= link_to 'Delete', event, method: :delete, class: 'btn btn-danger' %>
+      </p>
+    <% end %>
+  </div>
 <% end %>
