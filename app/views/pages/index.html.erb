@@ -1,2 +1,37 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<div class="jumbotron">
+  <h1>
+    Personal Timeline
+    <small>A project in recording a personal history.</small>
+  </h1>
+
+  <p>
+    As part of a larger project I'm doing, I had a need to write out a personal
+    timeline &ndash; a potted history of my life, along with any particular
+    emotions associated with each event. Of course, in order to distract myself
+    from the task at hand, and instead of using the A4 sheet of paper I'd been
+    given, I went looking for some software to help out.
+    <a href="http://timeline.knightlab.com/">TimelineJS</a> turned out to be
+    exactly what I was looking for.
+  </p>
+
+  <p>
+    I started out by maintaining the JSON source file manually, adding bits and
+    pieces as I could remember them. That got dull (and error prone!) pretty
+    quickly, though, so I'd chuck together some code as a web front end to
+    produce the JSON data.
+  </p>
+
+  <p>
+    I wondered if it could be handy for others, too, so I've shared the code on
+    GitHub <a href="https://github.com/mathie/timelines/">mathie/timelines</a>
+    and I've got an instance of it running here. You can sign up to create
+    timelines and either share them publicly, or keep them private. The next
+    thing I need to build is something to allow you to share a timeline with a
+    small number of collaborators.
+  </p>
+
+  <p class="text-center">
+    <%= link_to 'Public Timelines', public_timelines_path, class: 'btn btn-lg btn-default' %>
+    <%= link_to 'Sign up', new_session_path, class: 'btn btn-lg btn-primary' %>
+  </p>
+</div>
