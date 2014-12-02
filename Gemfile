@@ -18,6 +18,7 @@ gem 'omniauth-github'
 gem 'cancancan'
 
 gem 'carrierwave'
+gem 'fog'
 gem 'mini_magick'
 
 group :development, :test do
