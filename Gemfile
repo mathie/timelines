@@ -26,6 +26,7 @@ gem 'cancancan'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'
