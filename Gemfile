@@ -21,6 +21,7 @@ gem 'autoprefixer-rails'
 gem 'redcarpet'
 
 gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
 gem 'cancancan'
 
 gem 'carrierwave'
