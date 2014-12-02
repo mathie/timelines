@@ -4,6 +4,6 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    can :manage, Timeline, user_id: user.id
+    can :manage, Timeline, collaborations: { user_id: user.id }
   end
 end

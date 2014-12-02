@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202081920) do
+ActiveRecord::Schema.define(version: 20141202145251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20141202081920) do
   end
 
   add_index "categories", ["timeline_id"], name: "index_categories_on_timeline_id", using: :btree
+
+  create_table "collaborations", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "user_id",     null: false
+    t.uuid     "timeline_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "collaborations", ["user_id", "timeline_id"], name: "index_collaborations_on_user_id_and_timeline_id", unique: true, using: :btree
 
   create_table "eras", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.date     "started_on",  null: false
@@ -68,19 +77,25 @@ ActiveRecord::Schema.define(version: 20141202081920) do
   add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree
   add_index "events", ["timeline_id"], name: "index_events_on_timeline_id", using: :btree
 
+  create_table "invitations", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.string   "email_address", null: false
+    t.uuid     "timeline_id",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "invitations", ["timeline_id"], name: "index_invitations_on_timeline_id", using: :btree
+
   create_table "timelines", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "title",                               null: false
     t.text     "body",                                null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.uuid     "user_id",                             null: false
     t.string   "cover_image"
     t.string   "cover_image_caption"
     t.string   "cover_image_credit"
     t.boolean  "public",              default: false, null: false
   end
-
-  add_index "timelines", ["user_id"], name: "index_timelines_on_user_id", using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name",          null: false
@@ -93,8 +108,10 @@ ActiveRecord::Schema.define(version: 20141202081920) do
 
   add_foreign_key "authenticators", "users", on_update: :restrict, on_delete: :restrict
   add_foreign_key "categories", "timelines", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "collaborations", "timelines", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "collaborations", "users", on_update: :restrict, on_delete: :restrict
   add_foreign_key "eras", "timelines", on_update: :restrict, on_delete: :restrict
   add_foreign_key "events", "categories", on_update: :restrict, on_delete: :restrict
   add_foreign_key "events", "timelines", on_update: :restrict, on_delete: :restrict
-  add_foreign_key "timelines", "users", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "invitations", "timelines", on_update: :restrict, on_delete: :restrict
 end

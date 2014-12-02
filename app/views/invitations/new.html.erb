@@ -1,0 +1,9 @@
+<% content_for :title, 'New invitation' %>
+
+<%= bootstrap_form_for [@timeline, @invitation] do |f| %>
+  <%= render 'shared/errors', model: f.object %>
+
+  <%= f.text_field :email_address, autofocus: true, placeholder: 'john.appleseed@apple.com' %>
+
+  <%= f.submit cancel: @timeline %>
+<% end %>

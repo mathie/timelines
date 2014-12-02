@@ -1,0 +1,5 @@
+<% content_for :title, "Collaborate on #{@timeline.title}"%>
+
+<%= bootstrap_form_for [@invitation, @collaboration] do |f| %>
+  <%= f.submit cancel: root_path %>
+<% end %>

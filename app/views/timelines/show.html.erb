@@ -2,6 +2,7 @@
 <% if can? :manage, @timeline %>
   <% content_for :toolbar do %>
     <%= link_to 'Edit', edit_timeline_path(@timeline), class: 'btn btn-default' %>
+    <%= link_to 'Invite Collaborator', new_timeline_invitation_path(@timeline), class: 'btn btn-primary' %>
   <% end %>
 <% end %>
 

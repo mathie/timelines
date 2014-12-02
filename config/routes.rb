@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :categories, shallow: true
     resources :eras, shallow: true
     resources :events, shallow: true
+
+    resources :invitations, shallow: true, only: [:new, :create] do
+      resources :collaborations, only: [:new, :create]
+    end
   end
 
   resources :timeline_json_importers, only: [:new, :create]
