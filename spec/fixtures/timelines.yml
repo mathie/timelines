@@ -1,0 +1,10 @@
+public:
+  title: My Public Timeline
+  body: |
+    This is my public timeline, that I've chosen to share with others.
+  public: true
+private:
+  title: My Private Timeline
+  body: |
+    This is my private timeline that I'm keeping entirely to myself.
+  public: false

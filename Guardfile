@@ -19,6 +19,14 @@ guard :rspec, cmd: 'bin/rspec' do
     ]
   end
 
+  watch(%r{^spec/fixtures/(.+)s\.yml$}) do |m|
+    [
+      "spec/features/#{m[1]}s_spec.rb",
+      "spec/models/#{m[1]}_spec.rb",
+      "spec/controllers/#{m[1]}s_controller_spec.rb"
+    ]
+  end
+
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
