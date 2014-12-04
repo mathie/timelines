@@ -32,6 +32,10 @@
 
   <p class="text-center">
     <%= link_to 'Public Timelines', public_timelines_path, class: 'btn btn-lg btn-default' %>
-    <%= link_to 'Sign up', new_session_path, class: 'btn btn-lg btn-primary' %>
+    <% if signed_in? %>
+      <%= link_to 'My Timelines', timelines_path, class: 'btn btn-lg btn-primary' %>
+    <% else %>
+      <%= link_to 'Sign up', new_session_path, class: 'btn btn-lg btn-primary' %>
+    <% end %>
   </p>
 </div>
