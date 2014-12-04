@@ -1,4 +1,6 @@
 class TimelineJsonImportersController < ApplicationController
+  before_filter :require_login
+
   def new
     @timeline_json_importer = TimelineJSONImporter.new
   end
