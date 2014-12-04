@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless signed_in?
-      redirect_to root_path, alert: 'You must be signed in to perform this task'
+      session[:return_url] = request.original_url
+      redirect_to new_session_path, alert: 'You must be signed in to perform this task'
     end
   end
 

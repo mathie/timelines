@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     @user = Authenticator.find_or_create_by_auth_hash(session_params)
     self.current_user = @user
-    redirect_to root_path
+    redirect_to session.delete(:return_url) || root_path
   end
 
   def destroy
