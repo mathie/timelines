@@ -24,6 +24,7 @@ class TimelinesController < ApplicationController
   def create
     @timeline = current_user.timelines.new(timeline_params)
     if @timeline.save
+      @timeline.users << current_user
       redirect_to @timeline, notice: "Timeline successfully created."
     else
       render 'new'

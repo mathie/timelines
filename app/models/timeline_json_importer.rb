@@ -25,8 +25,8 @@ class TimelineJSONImporter
       cover_image_caption: timeline_json['asset']['caption'],
       cover_image_credit:  timeline_json['asset']['credit']
     )
-
     if @timeline.save
+      @timeline.users << @user
       timeline_json['date'].each do |date|
         category = @timeline.categories.where(title: date['tag']).take
         unless category.present?
